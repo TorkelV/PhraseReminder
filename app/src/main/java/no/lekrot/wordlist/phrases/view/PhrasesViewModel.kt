@@ -20,7 +20,7 @@ import no.lekrot.wordlist.phrases.domain.AddPhraseComponent
 import no.lekrot.wordlist.phrases.domain.Phrase
 import se.ingenuity.lives.Lives
 
-class PhraseViewModel(private val db: PhraseDao, prefs: PreferenceService) : ViewModel() {
+class PhrasesViewModel(private val db: PhraseDao, prefs: PreferenceService) : ViewModel() {
 
     private val _navigation = MutableLiveData<PhrasesNavigationEvent>()
     val navigation = _navigation.map(::Event)

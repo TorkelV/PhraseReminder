@@ -11,7 +11,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PhrasesFragment : Fragment() {
 
-    private val viewModel: PhraseViewModel by viewModel()
+    private val viewModel: PhrasesViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,

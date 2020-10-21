@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import no.lekrot.wordlist.phrases.data.AppDatabase
 import no.lekrot.wordlist.phrases.data.PhraseDao
-import no.lekrot.wordlist.phrases.view.PhraseViewModel
+import no.lekrot.wordlist.phrases.view.PhrasesViewModel
 import no.lekrot.wordlist.phrases.view.SubPhrasesFragmentArgs
 import no.lekrot.wordlist.phrases.view.SubPhrasesViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -13,7 +13,7 @@ import org.koin.dsl.module
 
 val phraseModule = module {
     viewModel { (args: SubPhrasesFragmentArgs) -> SubPhrasesViewModel(args, get()) }
-    viewModel { PhraseViewModel(get(), get()) }
+    viewModel { PhrasesViewModel(get(), get()) }
     single<AppDatabase> {
         Room.databaseBuilder(
             get(),

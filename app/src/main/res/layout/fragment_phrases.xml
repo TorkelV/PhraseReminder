@@ -10,7 +10,7 @@
 
         <variable
             name="viewModel"
-            type="no.lekrot.wordlist.phrases.view.PhraseViewModel" />
+            type="no.lekrot.wordlist.phrases.view.PhrasesViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
