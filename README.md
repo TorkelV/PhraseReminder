@@ -1,6 +1,6 @@
 # Phrase Reminder
 
-An app implementation that tries to use a pure functional approach.
+An android app implementation that tries to use a pure functional approach.
 
 The main goal is to use as few side effects as possible.
 * Most side effects should only affect the database or data store.
