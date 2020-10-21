@@ -36,7 +36,7 @@
                 android:id="@+id/search_field"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:imeOptions="@{EditorInfo.IME_ACTION_SEARCH}"
+                android:imeOptions="@{EditorInfo.IME_ACTION_DONE}"
                 android:inputType="text"
                 android:lines="1"
                 android:maxLines="1"
@@ -46,12 +46,13 @@
 
         <ImageButton
             android:id="@+id/close_search"
+            closeKeyboardWith="@{search.getEditText()}"
+            onClickCloseKeyboard="@{() -> component.close()}"
             visibleOrGone="@{component.visible}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/dimen_2x"
             android:backgroundTint="@color/accept"
-            android:onClick="@{() -> component.close()}"
             android:src="@drawable/ic_baseline_close_fullscreen_24"
             app:layout_constraintBottom_toBottomOf="@id/search"
             app:layout_constraintEnd_toEndOf="parent"

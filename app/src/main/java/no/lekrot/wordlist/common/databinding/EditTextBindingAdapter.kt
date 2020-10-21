@@ -6,6 +6,7 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.databinding.BindingAdapter
+import no.lekrot.wordlist.common.extensions.ViewExtension.hideKeyboard
 
 object EditTextBindingAdapter {
 
@@ -21,9 +22,7 @@ object EditTextBindingAdapter {
             ) {
                 if (event == null || !event.isShiftPressed) {
                     onFinishedEditing()
-                    (context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).apply {
-                        hideSoftInputFromWindow(this@setOnFinishedEditing.windowToken, 0)
-                    }
+                    this.hideKeyboard()
                 }
             }
             false
