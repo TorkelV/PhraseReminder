@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="group"
+            type="no.lekrot.wordlist.phrases.component.ComponentDrawerGroup" />
+
+        <variable
+            name="onClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onDelete"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onLongClick"
+            type="android.view.View.OnLongClickListener" />
+
+        <variable
+            name="delete"
+            type="androidx.lifecycle.LiveData&lt;Boolean&gt;" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        onLongClickListener="@{onLongClick}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="@{!group.enabled}"
+        android:onClick="@{onClick}">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@{group.enabled ? @color/colorPrimary : @color/black}"
+            android:drawablePadding="@dimen/dimen_unit"
+            android:paddingVertical="@dimen/dimen_2x"
+            android:paddingStart="@dimen/dimen_unit"
+            android:text="@{group.name}"
+            android:textAppearance="?shortcutTextAppearanceSubtitle"
+            app:drawableStartCompat="@drawable/ic_baseline_language_24"
+            app:layout_constraintEnd_toStartOf="@id/edit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Default" />
+
+        <ImageButton
+            android:id="@+id/edit"
+            visibleOrGone="@{delete &amp;&amp; !group.enabled}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/danger"
+            android:maxWidth="@dimen/dimen_2x"
+            android:maxHeight="@dimen/dimen_2x"
+            android:onClick="@{onDelete}"
+            android:src="@drawable/ic_baseline_delete_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="add"
+            type="no.lekrot.wordlist.phrases.component.AddGroupComponent" />
+
+        <variable
+            name="onClick"
+            type="android.view.View.OnClickListener" />
+
+        <import type="android.view.inputmethod.EditorInfo" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/newgroup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_unit"
+            android:hint="@string/list"
+            android:layout_marginTop="@dimen/dimen_2x"
+            app:layout_constraintEnd_toStartOf="@id/submit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                onFinishedEditing="@{() -> onClick.onClick(submit)}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="@{EditorInfo.IME_ACTION_DONE}"
+                android:inputType="text"
+                android:lines="1"
+                android:maxLines="1"
+                android:text="@={add.text}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+            android:id="@+id/submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="@{add.enabled}"
+            android:onClick="@{onClick}"
+            android:src="@drawable/ic_baseline_done_24"
+            app:layout_constraintBottom_toBottomOf="@id/newgroup"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:backgroundTint="@color/accept"
+            app:layout_constraintTop_toTopOf="@id/newgroup" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

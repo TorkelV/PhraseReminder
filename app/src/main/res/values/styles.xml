@@ -1,0 +1,32 @@
+<resources>
+
+    <style name="Widget.Shortcut.Toolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="navigationIcon">@drawable/ic_chevron_back</item>
+        <item name="titleTextColor">@color/white</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+    <style name="ThemeOverlay.Shortcut.TextInputLayout" parent="@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="colorPrimary">@color/colorPrimary</item>
+    </style>
+
+    <style name="Widget.Shortcut.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Shortcut.TextInputLayout</item>
+    </style>
+
+    <style name="ToolbarColoredBackArrow" parent="Theme.Shortcut">
+        <item name="android:textColorSecondary">@color/white</item>
+    </style>
+
+
+    <style name="Widget.Shortcut.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:minWidth">176dp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:paddingTop">@dimen/dimen_unit</item>
+        <item name="android:paddingBottom">@dimen/dimen_unit</item>
+        <item name="android:paddingStart">@dimen/dimen_3x</item>
+        <item name="android:paddingEnd">@dimen/dimen_3x</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="cornerRadius">@dimen/dimen_4x</item>
+    </style>
+</resources>

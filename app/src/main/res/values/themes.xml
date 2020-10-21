@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Shortcut" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="textAppearanceButton">@style/TextAppearance.Shortcut.Button</item>
+        <item name="materialButtonStyle">@style/Widget.Shortcut.Button</item>
+        <item name="textInputStyle">@style/Widget.Shortcut.TextInputLayout</item>
+        <item name="toolbarStyle">@style/Widget.Shortcut.Toolbar</item>
+        <item name="shortcutTextAppearanceHeadline1">@style/TextAppearance.Shortcut.Headline1</item>
+        <item name="shortcutTextAppearanceHeadline2">@style/TextAppearance.Shortcut.Headline2</item>
+        <item name="shortcutTextAppearanceSubtitle">@style/TextAppearance.Shortcut.Subtitle</item>
+        <item name="shortcutTextAppearanceBody">@style/TextAppearance.Shortcut.Body</item>
+        <item name="shortcutTextAppearanceLink">@style/TextAppearance.Shortcut.Link</item>
+        <item name="android:statusBarColor">#000</item>
+    </style>
+
+    <style name="Theme.Splash" parent="">
+        <item name="android:windowBackground">@drawable/splash_screen_background</item>
+    </style>
+
+</resources>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="no.lekrot.wordlist.main.view.MainViewModel" />
+    </data>
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer"
+        android:layout_width="match_parent"
+        onClose="@{() -> viewModel.toggleDelete(false)}"
+        drawerLockMode="@{viewModel.drawerEnabled ? 0 : 1}"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                navigationOnClickListener="@{(v) -> viewModel.navigateBack()}"
+                visibleOrGone="@{viewModel.topNavVisible}"
+                android:layout_width="match_parent"
+                android:theme="@style/ToolbarColoredBackArrow"
+                android:layout_height="wrap_content"
+                app:layout_collapseMode="pin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:title="@{viewModel.toolbarTitle}" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/menu_nav_host"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:defaultNavHost="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar"
+                app:navGraph="@navigation/nav_graph" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="240dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_gravity="start"
+            android:layout_height="match_parent"
+            android:background="#000">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/dimen_2x"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                itemBinding="@{viewModel.drawerBinding}"
+                items="@{viewModel.drawerItems}"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+</layout>

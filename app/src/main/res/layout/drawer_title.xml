@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="title"
+            type="no.lekrot.wordlist.phrases.component.ComponentTitle" />
+    </data>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@{title.title}"
+        android:paddingVertical="@dimen/dimen_2x"
+        android:textAppearance="?shortcutTextAppearanceHeadline2"
+        tools:text="Groups:" />
+</layout>

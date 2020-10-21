@@ -1,0 +1,26 @@
+name: Android CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: before build
+        uses: xdtianyu/actions-android-ci@486ef4829eca7b5813991b86f2dba8b1dcc5a9f3
+        with:
+          args: '"
+        touch local.properties
+        "'
+
+      - name: build
+        uses: xdtianyu/actions-android-ci@486ef4829eca7b5813991b86f2dba8b1dcc5a9f3
+        with:
+          args: '"
+        source /opt/setup-android-sdk.sh;
+        ./gradlew build
+        "'

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.inputmethod.EditorInfo" />
+
+        <import type="no.lekrot.wordlist.common.databinding.Events" />
+
+        <variable
+            name="component"
+            type="no.lekrot.wordlist.phrases.domain.AddPhraseComponent" />
+
+        <variable
+            name="groupId"
+            type="String" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/word"
+            visibleOrGone="@{component.visible}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_2x"
+            android:layout_marginBottom="@dimen/dimen_unit"
+            android:hint="@string/word"
+            app:endIconDrawable="@drawable/ic_baseline_clear_24"
+            app:endIconMode="clear_text"
+            app:layout_constraintBottom_toTopOf="@id/translation"
+            app:layout_constraintEnd_toStartOf="@id/submit"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/word_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="@{EditorInfo.IME_ACTION_NEXT}"
+                android:inputType="text"
+                android:lines="1"
+                android:maxLines="1"
+                android:text="@={component.phrase}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/translation"
+            visibleOrGone="@{component.visible}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_2x"
+            android:layout_marginBottom="@dimen/dimen_unit"
+            android:hint="@string/translation"
+            app:endIconDrawable="@drawable/ic_baseline_clear_24"
+            app:endIconMode="clear_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/submit"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/translation_field"
+                onFinishedEditing="@{() -> component.submit(component.phrase, component.translation, groupId)}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="@{EditorInfo.IME_ACTION_DONE}"
+                android:inputType="text"
+                android:lines="1"
+                android:maxLines="1"
+                android:text="@={component.translation}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+            android:id="@+id/submit"
+            visibleOrGone="@{component.visible}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_2x"
+            android:backgroundTint="@color/accept"
+            android:enabled="@{component.isValid}"
+            android:onClick="@{() -> translation.getEditText().dispatchKeyEvent(Events.getKeyEventDone())}"
+            android:src="@drawable/ic_baseline_done_24"
+            app:layout_constraintBottom_toBottomOf="@id/translation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/word" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

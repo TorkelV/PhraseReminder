@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Phrase Reminder</string>
+    <string name="splash_title">Splash screen title</string>
+    <string name="onboarding_1_title">Phrase Reminder</string>
+    <string name="onboarding_1_text">En enkel app for å skrive ned fraser og ord.</string>
+    <string name="onboarding_2_title">Søk på fraser</string>
+    <string name="onboarding_2_text">Du kan enkelt søke på ord og fraser du har lagret.</string>
+    <string name="onboarding_3_title">Legg til relaterte fraser/ord</string>
+    <string name="onboarding_3_text">Trykk på et ord for å legge til relaterte fraser/ord.\nEt langt trykk på et ord vil åpne menyen for å slette det.</string>
+    <string name="onboarding_button">Neste</string>
+    <string name="onboarding_button_last">Kom i gang</string>
+    <!--103_Versionlock Android and iOS-->
+    <string name="versionlock_title">Please update your app!</string>
+    <string name="versionlock_button">Update</string>
+    <string name="versionlock_text">Sorry! This app version is a little too outdated, we have been working hard to improve features and bug fixes and we want to ensure you have the smoothest experience possible. Please go to the play store and update the app!</string>
+    <string name="contentdesc_logo">logo</string>
+    <string name="a_navigate">Go to fragment b</string>
+    <string name="b_navigate">This fragment has back navigation in the toolbar, through the main viewmodel</string>
+    <string name="search">Søk</string>
+    <string name="word">Ord</string>
+    <string name="translation">Oversettelse</string>
+    <string name="back">Tilbake</string>
+    <string name="list">Ny liste</string>
+    <string name="lists">Lister</string>
+    <string name="all">Alle</string>
+</resources>

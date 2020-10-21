@@ -1,0 +1,13 @@
+<resources>
+    <dimen name="dimen_quarter">2dp</dimen>
+    <dimen name="dimen_half">4dp</dimen>
+    <dimen name="dimen_unit">8dp</dimen>
+    <dimen name="dimen_plus_half">12dp</dimen>
+    <dimen name="dimen_2x">16dp</dimen>
+    <dimen name="dimen_3x">24dp</dimen>
+    <dimen name="dimen_4x">32dp</dimen>
+    <dimen name="dimen_5x">40dp</dimen>
+    <dimen name="dimen_6x">48dp</dimen>
+    <dimen name="dimen_8x">64dp</dimen>
+    <dimen name="dimen_crazy">9999dp</dimen>
+</resources>

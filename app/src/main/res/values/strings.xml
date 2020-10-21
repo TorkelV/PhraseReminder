@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Phrase Reminder</string>
+    <string name="splash_title">Splash screen title</string>
+    <string name="onboarding_1_title">Phrase Reminder</string>
+    <string name="onboarding_1_text">A simple app to write down phrases/words to remember</string>
+    <string name="onboarding_2_title">Search for phrases</string>
+    <string name="onboarding_2_text">Easily search for your saved phrases.</string>
+    <string name="onboarding_3_title">Save related phrases</string>
+    <string name="onboarding_3_text">Click on a word to add related phrases.\nLong press on a word to delete it.</string>
+    <string name="onboarding_button">Next</string>
+    <string name="onboarding_button_last">Lets do it</string>
+    <!--103_Versionlock Android and iOS-->
+    <string name="versionlock_title">Please update your app!</string>
+    <string name="versionlock_button">Update</string>
+    <string name="versionlock_text">Sorry! This app version is a little too outdated, we have been working hard to improve features and bug fixes and we want to ensure you have the smoothest experience possible. Please go to the play store and update the app!</string>
+    <string name="contentdesc_logo">logo</string>
+    <string name="a_navigate">Go to fragment b</string>
+    <string name="b_navigate">This fragment has back navigation in the toolbar, through the main viewmodel</string>
+    <string name="search">Search</string>
+    <string name="word">Word</string>
+    <string name="translation">Translation</string>
+    <string name="back">Back</string>
+    <string name="list">New list</string>
+    <string name="lists">Lists:</string>
+    <string name="all">All</string>
+
+</resources>

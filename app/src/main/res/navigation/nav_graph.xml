@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menu_nav_graph"
+    app:startDestination="@id/splash_fragment">
+    <fragment
+        android:id="@+id/splash_fragment"
+        android:name="no.lekrot.wordlist.startup.view.SplashFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/to_onboarding"
+            app:destination="@id/onboarding_fragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/menu_nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/onboarding_fragment"
+        android:name="no.lekrot.wordlist.startup.view.OnboardingFragment"
+        android:label="OnboardingFragment"
+        tools:layout="@layout/fragment_onboarding" />
+    <activity
+        android:id="@+id/main_activity"
+        android:name="no.lekrot.wordlist.main.view.MainActivity"
+        android:label="MainActivity" />
+    <fragment
+        android:id="@+id/phrases_fragment"
+        android:name="no.lekrot.wordlist.phrases.view.PhrasesFragment"
+        tools:layout="@layout/fragment_phrases" >
+        <action android:id="@+id/toPhrase"
+            app:destination="@id/b_fragment"
+            app:enterAnim="@anim/slide_in_right">
+            <argument android:name="phraseId"
+                app:argType="string"/>
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/b_fragment"
+        android:name="no.lekrot.wordlist.phrases.view.SubPhrasesFragment"
+        tools:layout="@layout/fragment_sub_phrases">
+        <argument android:name="phraseId"
+            app:argType="string"/>
+    </fragment>
+    <action
+        android:id="@+id/to_main"
+        app:destination="@id/phrases_fragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@+id/menu_nav_graph"
+        app:popUpToInclusive="true" />
+</navigation>

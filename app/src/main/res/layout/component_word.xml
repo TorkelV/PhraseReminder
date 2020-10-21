@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="phrase"
+            type="no.lekrot.wordlist.phrases.domain.Phrase" />
+
+        <variable
+            name="onLongClick"
+            type="android.view.View.OnLongClickListener" />
+
+        <variable
+            name="i"
+            type="int" />
+
+        <variable
+            name="canDelete"
+            type="androidx.lifecycle.LiveData&lt;Boolean&gt;" />
+
+        <variable
+            name="onDelete"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onPhraseClick"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        onLongClickListener="@{onLongClick}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_unit"
+        android:onClick="@{onPhraseClick}">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/word2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_quarter"
+            android:padding="@dimen/dimen_unit"
+            app:cardCornerRadius="@dimen/dimen_quarter"
+            app:cardElevation="@{(i % 2) == 0 ? 8 : 1}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/translation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/dimen_unit"
+                android:text="@{phrase.phrase}"
+                android:textAppearance="?shortcutTextAppearanceBody"
+                tools:text="Table" />
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/translation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_quarter"
+            android:padding="@dimen/dimen_unit"
+            app:cardCornerRadius="@dimen/dimen_quarter"
+            app:cardElevation="@{(i % 2) == 0 ? 8 : 1}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/edit"
+            app:layout_constraintStart_toEndOf="@id/word2"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dimen_unit"
+                android:text="@{phrase.translation}"
+                android:textAppearance="?shortcutTextAppearanceBody"
+                tools:text="asdfasd asdf asdf asdf asdsdfg sdfg sdf gsdf gsdf gsdf gf asdf asdf asdf f" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <ImageButton
+            android:id="@+id/edit"
+            visibleOrGone="@{canDelete}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/danger"
+            android:maxWidth="@dimen/dimen_2x"
+            android:maxHeight="@dimen/dimen_2x"
+            android:onClick="@{onDelete}"
+            android:src="@drawable/ic_baseline_delete_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
