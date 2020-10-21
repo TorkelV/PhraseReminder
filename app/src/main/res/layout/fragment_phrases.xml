@@ -26,47 +26,16 @@
             android:padding="@dimen/dimen_unit"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/word"
-            app:layout_constraintTop_toBottomOf="@id/search" />
+            app:layout_constraintTop_toBottomOf="@id/search_component" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/search"
-            visibleOrGone="@{viewModel.searchComponent.visible}"
-            android:layout_width="0dp"
+        <include
+            android:id="@+id/search_component"
+            component="@{viewModel.searchComponent}"
+            layout="@layout/search_component"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/dimen_2x"
-            android:layout_marginTop="@dimen/dimen_2x"
-            android:layout_marginBottom="@dimen/dimen_unit"
-            android:hint="@string/search"
-            app:endIconDrawable="@drawable/ic_baseline_clear_24"
-            app:endIconMode="clear_text"
-            app:layout_constraintEnd_toStartOf="@id/close_search"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/search_field"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:imeOptions="@{EditorInfo.IME_ACTION_DONE}"
-                android:inputType="text"
-                android:lines="1"
-                android:maxLines="1"
-                android:text="@={viewModel.searchComponent.searchString}" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <ImageButton
-            android:id="@+id/close_search"
-            visibleOrGone="@{viewModel.searchComponent.visible}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/dimen_2x"
-            android:backgroundTint="@color/accept"
-            android:onClick="@{() -> viewModel.searchComponent.close()}"
-            android:src="@drawable/ic_baseline_close_fullscreen_24"
-            app:layout_constraintBottom_toBottomOf="@id/search"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/search" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

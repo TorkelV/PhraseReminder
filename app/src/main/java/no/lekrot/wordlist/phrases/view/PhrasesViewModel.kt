@@ -14,6 +14,7 @@ import no.lekrot.wordlist.common.extensions.toRPhraseDTO
 import no.lekrot.wordlist.common.livedata.Event
 import no.lekrot.wordlist.common.service.PreferenceService
 import no.lekrot.wordlist.phrases.component.PhraseSettings
+import no.lekrot.wordlist.phrases.component.SearchComponent
 import no.lekrot.wordlist.phrases.data.PhraseDTO
 import no.lekrot.wordlist.phrases.data.PhraseDao
 import no.lekrot.wordlist.phrases.domain.AddPhraseComponent
@@ -98,20 +99,5 @@ class PhrasesViewModel(private val db: PhraseDao, prefs: PreferenceService) : Vi
         addPhraseComponent.close()
         searchComponent.close()
         phraseSettings.close()
-    }
-
-    inner class SearchComponent {
-        val searchString = MutableLiveData<String>("")
-        private val _visible = MutableLiveData<Boolean>(false)
-        val visible: LiveData<Boolean> get() = _visible
-
-        fun show() {
-            _visible.value = true
-        }
-
-        fun close() {
-            searchString.value = ""
-            _visible.value = false
-        }
     }
 }
