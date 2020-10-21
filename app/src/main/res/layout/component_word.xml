@@ -18,16 +18,16 @@
             type="int" />
 
         <variable
-            name="canDelete"
-            type="androidx.lifecycle.LiveData&lt;Boolean&gt;" />
-
-        <variable
-            name="onDelete"
-            type="android.view.View.OnClickListener" />
+            name="phraseSettings"
+            type="no.lekrot.wordlist.phrases.component.PhraseSettings" />
 
         <variable
             name="onPhraseClick"
             type="android.view.View.OnClickListener" />
+
+        <variable
+            name="mainPhrase"
+            type="androidx.lifecycle.LiveData&lt;no.lekrot.wordlist.phrases.domain.Phrase&gt;" />
     </data>
 
 
@@ -85,13 +85,13 @@
 
         <ImageButton
             android:id="@+id/edit"
-            visibleOrGone="@{canDelete}"
+            visibleOrGone="@{phrase.id != mainPhrase.id &amp;&amp; phraseSettings.visible}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/danger"
             android:maxWidth="@dimen/dimen_2x"
             android:maxHeight="@dimen/dimen_2x"
-            android:onClick="@{onDelete}"
+            android:onClick="@{() -> phraseSettings.deletePhrase(phrase)}"
             android:src="@drawable/ic_baseline_delete_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

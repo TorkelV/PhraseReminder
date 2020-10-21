@@ -28,7 +28,7 @@ interface PhraseDao {
     fun insertAll(vararg phrases: RPhraseDTO)
 
     @Delete
-    fun deleteRelated(phrase: RPhraseDTO)
+    fun delete(phrase: RPhraseDTO)
 
     @Query("SELECT * FROM groups")
     fun getAllGroups(): Flow<List<GroupDTO>>

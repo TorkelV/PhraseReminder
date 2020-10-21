@@ -10,8 +10,10 @@ import no.lekrot.wordlist.BR
 import no.lekrot.wordlist.R
 import no.lekrot.wordlist.common.extensions.toPhrase
 import no.lekrot.wordlist.common.extensions.toPhraseDTO
+import no.lekrot.wordlist.common.extensions.toRPhraseDTO
 import no.lekrot.wordlist.common.livedata.Event
 import no.lekrot.wordlist.common.service.PreferenceService
+import no.lekrot.wordlist.phrases.component.PhraseSettings
 import no.lekrot.wordlist.phrases.data.PhraseDTO
 import no.lekrot.wordlist.phrases.data.PhraseDao
 import no.lekrot.wordlist.phrases.domain.AddPhraseComponent
@@ -23,8 +25,13 @@ class PhraseViewModel(private val db: PhraseDao, prefs: PreferenceService) : Vie
     private val _navigation = MutableLiveData<PhrasesNavigationEvent>()
     val navigation = _navigation.map(::Event)
 
-    private val _deleteEnabled = MutableLiveData(false)
     val searchComponent = SearchComponent()
+    val phraseSettings = PhraseSettings(
+        onDeletePhrase = { phrase ->
+            viewModelScope.launch(Dispatchers.IO) {
+                db.delete(phrase.toPhraseDTO())
+            }
+        })
 
     val addPhraseComponent = AddPhraseComponent { phrase ->
         viewModelScope.launch(Dispatchers.IO) {
@@ -48,7 +55,7 @@ class PhraseViewModel(private val db: PhraseDao, prefs: PreferenceService) : Vie
             if (enabled) {
                 phrases.reversed().filter {
                     it.phrase.contains(search, true) ||
-                        it.translation.contains(search, true)
+                            it.translation.contains(search, true)
                 }
             } else {
                 phrases.reversed()
@@ -56,38 +63,33 @@ class PhraseViewModel(private val db: PhraseDao, prefs: PreferenceService) : Vie
         }
 
     val itemBinding = ItemBinding.of<Phrase> { itemBinding, position, item ->
-        itemBinding.set(BR.phrase, R.layout.component_word).bindExtra(
-            BR.onDelete,
-            View.OnClickListener {
-                viewModelScope.launch(Dispatchers.IO) {
-                    db.delete(item.toPhraseDTO())
+        itemBinding.set(BR.phrase, R.layout.component_word)
+            .bindExtra(
+                BR.phraseSettings,
+                phraseSettings
+            )
+            .bindExtra(
+                BR.onLongClick,
+                View.OnLongClickListener {
+                    phraseSettings.show()
+                    true
                 }
-            }
-        ).bindExtra(
-            BR.onLongClick,
-            View.OnLongClickListener {
-                _deleteEnabled.value = true
-                true
-            }
-        ).bindExtra(
-            BR.canDelete,
-            _deleteEnabled
-        ).bindExtra(
-            BR.onPhraseClick,
-            View.OnClickListener {
-                _navigation.value = PhrasesNavigationToPhrase(item.id)
-            }
-        ).bindExtra(
-            BR.i,
-            position
-        )
+            ).bindExtra(
+                BR.onPhraseClick,
+                View.OnClickListener {
+                    _navigation.value = PhrasesNavigationToPhrase(item.id)
+                }
+            ).bindExtra(
+                BR.i,
+                position
+            )
     }
 
     val canExit: LiveData<Boolean> =
         Lives.combineLatest(
             searchComponent.visible,
             addPhraseComponent.visible,
-            _deleteEnabled
+            phraseSettings.visible
         ) { a, b, c ->
             !a && !b && !c
         }.distinctUntilChanged()
@@ -95,7 +97,7 @@ class PhraseViewModel(private val db: PhraseDao, prefs: PreferenceService) : Vie
     fun closeAllOverlays() {
         addPhraseComponent.close()
         searchComponent.close()
-        _deleteEnabled.value = false
+        phraseSettings.close()
     }
 
     inner class SearchComponent {

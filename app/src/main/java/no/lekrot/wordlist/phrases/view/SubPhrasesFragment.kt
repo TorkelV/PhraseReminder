@@ -34,13 +34,11 @@ class SubPhrasesFragment : Fragment() {
     private fun handleBackPressed() {
         val callback = object : OnBackPressedCallback(false) {
             override fun handleOnBackPressed() {
-                if (vm.canDelete.value == true) {
-                    vm.canDelete.value = false
-                }
+                vm.phraseSettings.close()
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
-        vm.canDelete.observe(viewLifecycleOwner) {
+        vm.phraseSettings.visible.observe(viewLifecycleOwner) {
             callback.isEnabled = it
         }
     }
