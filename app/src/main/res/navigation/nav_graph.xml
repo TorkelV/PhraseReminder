@@ -30,14 +30,14 @@
         android:name="no.lekrot.wordlist.phrases.view.PhrasesFragment"
         tools:layout="@layout/fragment_phrases" >
         <action android:id="@+id/toPhrase"
-            app:destination="@id/b_fragment"
+            app:destination="@id/sub_phrases_fragment"
             app:enterAnim="@anim/slide_in_right">
             <argument android:name="phraseId"
                 app:argType="string"/>
         </action>
     </fragment>
     <fragment
-        android:id="@+id/b_fragment"
+        android:id="@+id/sub_phrases_fragment"
         android:name="no.lekrot.wordlist.phrases.view.SubPhrasesFragment"
         tools:layout="@layout/fragment_sub_phrases">
         <argument android:name="phraseId"

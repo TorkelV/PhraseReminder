@@ -37,7 +37,7 @@ class MainViewModel(
     val topNavVisible =
         currentFragment.map { id ->
             listOf(
-                R.id.b_fragment,
+                R.id.sub_phrases_fragment,
                 R.id.phrases_fragment
             ).contains(id)
         }
