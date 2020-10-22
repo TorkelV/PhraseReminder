@@ -43,7 +43,14 @@ class SubPhrasesViewModel(
             viewModelScope.launch(Dispatchers.IO) {
                 db.delete(phrase.toRPhraseDTO(args.phraseId))
             }
-        })
+        }
+    )
+
+    val canExit: LiveData<Boolean> = phraseSettings.visible
+
+    fun closeAllOverlays() {
+        phraseSettings.close()
+    }
 
     val itemBinding = ItemBinding.of<Phrase> { itemBinding, position, _ ->
         itemBinding.set(BR.phrase, R.layout.component_word)

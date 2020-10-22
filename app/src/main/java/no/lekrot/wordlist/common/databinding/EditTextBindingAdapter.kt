@@ -1,9 +1,7 @@
 package no.lekrot.wordlist.common.databinding
 
-import android.content.Context
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.databinding.BindingAdapter
 import no.lekrot.wordlist.common.extensions.ViewExtension.hideKeyboard

@@ -10,7 +10,6 @@ import no.lekrot.wordlist.BR
 import no.lekrot.wordlist.R
 import no.lekrot.wordlist.common.extensions.toPhrase
 import no.lekrot.wordlist.common.extensions.toPhraseDTO
-import no.lekrot.wordlist.common.extensions.toRPhraseDTO
 import no.lekrot.wordlist.common.livedata.Event
 import no.lekrot.wordlist.common.service.PreferenceService
 import no.lekrot.wordlist.phrases.component.PhraseSettings
@@ -32,7 +31,8 @@ class PhrasesViewModel(private val db: PhraseDao, prefs: PreferenceService) : Vi
             viewModelScope.launch(Dispatchers.IO) {
                 db.delete(phrase.toPhraseDTO())
             }
-        })
+        }
+    )
 
     val addPhraseComponent = AddPhraseComponent { phrase ->
         viewModelScope.launch(Dispatchers.IO) {
@@ -56,7 +56,7 @@ class PhrasesViewModel(private val db: PhraseDao, prefs: PreferenceService) : Vi
             if (enabled) {
                 phrases.reversed().filter {
                     it.phrase.contains(search, true) ||
-                            it.translation.contains(search, true)
+                        it.translation.contains(search, true)
                 }
             } else {
                 phrases.reversed()

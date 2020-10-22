@@ -16,5 +16,4 @@ object ViewBindingAdapter {
         }
         return null
     }
-
 }

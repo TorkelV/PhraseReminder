@@ -2,7 +2,7 @@ package no.lekrot.wordlist.phrases.view
 
 import android.os.Bundle
 import android.view.*
-import androidx.activity.OnBackPressedCallback
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import no.lekrot.wordlist.R
@@ -47,17 +47,12 @@ class PhrasesFragment : Fragment() {
     }
 
     private fun handleBackPressed() {
-        val onBackPressedCallback = object : OnBackPressedCallback(false) {
-            override fun handleOnBackPressed() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            if (viewModel.canExit.value == true) {
                 viewModel.closeAllOverlays()
+            } else {
+                remove()
             }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            onBackPressedCallback
-        )
-        viewModel.canExit.observe(viewLifecycleOwner) {
-            onBackPressedCallback.isEnabled = !it
         }
     }
 
