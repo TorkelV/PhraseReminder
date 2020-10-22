@@ -18,6 +18,7 @@ import no.lekrot.wordlist.phrases.data.PhraseDao
 import no.lekrot.wordlist.phrases.data.RPhraseDTO
 import no.lekrot.wordlist.phrases.domain.AddPhraseComponent
 import no.lekrot.wordlist.phrases.domain.Phrase
+import se.ingenuity.lives.Lives
 
 class SubPhrasesViewModel(
     private val args: SubPhrasesFragmentArgs,
@@ -46,9 +47,11 @@ class SubPhrasesViewModel(
         }
     )
 
-    val canExit: LiveData<Boolean> = phraseSettings.visible
+    val canLeave: LiveData<Boolean> = Lives.combineLatest(phraseSettings.visible, addPhraseComponent.visible){
+        settingsVisible, addPhraseVisible -> !settingsVisible && !addPhraseVisible
+    }.distinctUntilChanged()
 
-    fun closeAllOverlays() {
+    fun prepareToLeave() {
         phraseSettings.close()
     }
 

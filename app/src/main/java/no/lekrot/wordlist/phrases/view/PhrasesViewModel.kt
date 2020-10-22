@@ -56,7 +56,7 @@ class PhrasesViewModel(private val db: PhraseDao, prefs: PreferenceService) : Vi
             if (enabled) {
                 phrases.reversed().filter {
                     it.phrase.contains(search, true) ||
-                        it.translation.contains(search, true)
+                            it.translation.contains(search, true)
                 }
             } else {
                 phrases.reversed()
@@ -86,7 +86,7 @@ class PhrasesViewModel(private val db: PhraseDao, prefs: PreferenceService) : Vi
             )
     }
 
-    val canExit: LiveData<Boolean> =
+    val canLeave: LiveData<Boolean> =
         Lives.combineLatest(
             searchComponent.visible,
             addPhraseComponent.visible,
@@ -95,7 +95,7 @@ class PhrasesViewModel(private val db: PhraseDao, prefs: PreferenceService) : Vi
             !a && !b && !c
         }.distinctUntilChanged()
 
-    fun closeAllOverlays() {
+    fun prepareToLeave() {
         addPhraseComponent.close()
         searchComponent.close()
         phraseSettings.close()
