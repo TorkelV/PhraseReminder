@@ -47,8 +47,9 @@ class SubPhrasesViewModel(
         }
     )
 
-    val canLeave: LiveData<Boolean> = Lives.combineLatest(phraseSettings.visible, addPhraseComponent.visible){
-        settingsVisible, addPhraseVisible -> !settingsVisible && !addPhraseVisible
+    val canLeave: LiveData<Boolean> = Lives.combineLatest(phraseSettings.visible, addPhraseComponent.visible) {
+        settingsVisible, addPhraseVisible ->
+        !settingsVisible && !addPhraseVisible
     }.distinctUntilChanged()
 
     fun prepareToLeave() {

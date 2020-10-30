@@ -11,6 +11,5 @@ object FragmentExtension {
                 requireActivity().onBackPressed()
             }
         }
-
     }
 }

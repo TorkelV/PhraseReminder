@@ -2,7 +2,6 @@ package no.lekrot.wordlist.phrases.view
 
 import android.os.Bundle
 import android.view.*
-import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import no.lekrot.wordlist.common.extensions.FragmentExtension.onBackPressed
@@ -33,7 +32,7 @@ class SubPhrasesFragment : Fragment() {
     }
 
     private fun handleBackPressed() {
-        vm.canLeave.observe(viewLifecycleOwner){}
+        vm.canLeave.observe(viewLifecycleOwner) {}
         onBackPressed {
             (vm.canLeave.value ?: true).not().also { staying ->
                 if (staying) vm.prepareToLeave()

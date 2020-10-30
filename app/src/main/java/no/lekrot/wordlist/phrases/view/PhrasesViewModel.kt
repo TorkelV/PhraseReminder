@@ -56,7 +56,7 @@ class PhrasesViewModel(private val db: PhraseDao, prefs: PreferenceService) : Vi
             if (enabled) {
                 phrases.reversed().filter {
                     it.phrase.contains(search, true) ||
-                            it.translation.contains(search, true)
+                        it.translation.contains(search, true)
                 }
             } else {
                 phrases.reversed()
